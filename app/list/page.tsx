@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function List() {
   let products: String[] = ["Tomatoes", "Pasta", "Coconut"];
+  let [quantity, setQuantity] = useState(Array(products.length).fill(0));
 
   let productCards = products.map((product, i) => {
     return (
@@ -14,6 +18,15 @@ export default function List() {
           height={100}
         />
         <h4>{product} $40</h4>
+        <span> {quantity[i]} </span>
+        <button
+          onClick={() => {
+            quantity[i] += 1;
+            setQuantity([...quantity]);
+          }}
+        >
+          +
+        </button>
       </div>
     );
   });
